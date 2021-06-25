@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Fiat",
+    "model": "Brava",
+    "production_year": "2006",
+    "photo": "brava.jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  },
+   {
+    "name": "BMW",
+    "model": "M4",
+    "production_year": "2014",
+     "photo": "m4.jpg",
+     "seats": 2,
+    "gearbox": "automatic"
+  },
+  {
+    "name": "Toyota",
+    "model": "Auris",
+    "production_year": "2013",
+    "photo": "auris.jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  },
+  {
+    "name": "Fiat",
+    "model": "Panda",
+    "production_year": "2010",
+    "photo": "......jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  },
+  {
+    "name": "Fiat",
+    "model": "500",
+    "production_year": "2019",
+    "photo": "......jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  },
+  {
+    "name": "Ford",
+    "model": "Fiesta",
+    "production_year": "2010",
+    "photo": "......jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  },
+  {
+    "name": "Citroen",
+    "model": "C3",
+    "production_year": "2017",
+    "photo": ".....jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  },
+  {
+    "name": "Renault",
+    "model": "Clio",
+    "production_year": "2020",
+    "photo": "......jpg",
+    "seats": 4,
+    "gearbox": "automatic"
+  },
+  {
+    "name": "Citroen",
+    "model": "Cactus",
+    "production_year": "2020",
+    "photo": "......jpg",
+    "seats": 5,
+    "gearbox": "automatic"
+  },
+  {
+    "name": "Renault",
+    "model": "Megan",
+    "production_year": "2018",
+    "photo": "......jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  },
+  {
+    "name": "Toyota",
+    "model": "Yaris",
+    "production_year": "2018",
+    "photo": ".....jpg",
+    "seats": 4,
+    "gearbox": "automatic"
+  },
+  {
+    "name": "Peugeot",
+    "model": "308",
+    "production_year": "2018",
+    "photo": ".....jpg",
+    "seats": 5,
+    "gearbox": "manual"
+  }
+]
