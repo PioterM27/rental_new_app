@@ -106,7 +106,7 @@
             <li>Model: {{datas.model}}</li>
             <li>Rok: produkcji {{datas.production_year}}</li>
         </ul>
-       <form action="{{url_for('get_reservation',car_id=datas.id)}}" method="POST" >
+       <form action="{{url_for('get_reservation',car_id=datas.id)}}" method="GET" >
                 <input type="hidden" name="photo" value={{datas.photo}}>
                 <td><button type="submit">Zarezerwuj</button></td>
       </form>
