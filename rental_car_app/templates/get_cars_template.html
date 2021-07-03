@@ -1,123 +1,158 @@
 {%extends "base.html"%}
 
 {% block title %}
-    HI
+HI
 {% endblock %}
 
 {% block navbar%}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
     </div>
-  </div>
 </nav>
 {% endblock %}
 
 
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
 <div class="container">
-  <div class="row">
-    <div class="col">
-     <form action="{{url_for('get_cars')}}" method="POST">
-       <div class="col">
-           <fieldset class="form-field">
-               <li>{{ form1.dateFrom.label }}</li>
-               <li>{{ form1.dateFrom }}</li>
-          </fieldset>
-       </div>
-       <div class="col">
-            <fieldset class="form-field">
-               <li>{{ form1.dateTo.label }}</li>
-               <li>{{ form1.dateTo }}</li>
-          </fieldset>
-       </div>
-       <div>
-        <li><button type="submit">Szukaj</button></li>
-       </div>
-     </form>
-      <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  {% if form %}
-  <tbody>
-          {% for fort in form %}
-          <form action="{{url_for('get_cars')}}" method="POST" >
-                <th scope="row">{{loop.index}}</th>
-                <td><input type="hidden" value={{fort.name}} name="name">{{fort.name}}</input></td>
-                <td><input type="hidden" value={{fort.model}} name="model">{{fort.model}}</input></td>
+    <div class="row">
+        <div class="col">
+            <div class="row">
+                <div class="col-md-6">
+
+                    <form action="{{url_for('get_cars')}}" method="POST">
+                        <div class="col-md-6">
+                            <fieldset class="form-field">
+                                <label for="start">Start date:</label>
+                                <input type="date" id="start" name="rent-from"
+                                       value= {%if calendar %} {{calendar[0]}} {%else%} "2020-07-22" {%endif%}
+                                       min="2020-01-01" max="2022-12-31">
+                            </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset class="form-field">
+                                <label for="start">Start date:</label>
+                                <input type="date" id="stop" name="rent-to"
+                                       value={%if calendar %} {{calendar[1]}} {%else%} "2020-07-22" {%endif%}
+                                       min="2020-01-01" max="2022-12-31">
+                            </fieldset>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Szukaj</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            Default checkbox
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            Checked checkbox
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                </tr>
+                </thead>
+                {% if form %}
+                <tbody>
+                {% for fort in form %}
+                <form action="{{url_for('get_cars')}}" method="POST">
+                    <th scope="row">{{loop.index}}</th>
+                    <td><input type="hidden" value={{fort.name}} name="name">{{fort.name}}</input></td>
+                    <td><input type="hidden" value={{fort.model}} name="model">{{fort.model}}</input></td>
                     <input type="hidden" name="id" value={{fort.id}}>
-                <td><button type="submit">Sprawdz</button></td>
-           </tr>
-          </form>
-          {% endfor %}
+                    <td>
+                        <button type="submit">Sprawdz</button>
+                    </td>
+                    </tr>
+                </form>
+                {% endfor %}
 
 
-  </tbody>
-  {% endif %}
-</table>
+                </tbody>
+                {% endif %}
+            </table>
+        </div>
+        <div class="col-6">
+            <div class="card" style="width: 30rem;">
+                <img src="{{url_for('static',filename=current_picture)}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{% if datas %} {{datas.name}} {{datas.model}} {% else %} Car Rental {%
+                        endif %}</h5>
+                    <p class="card-text">
+                        {% if datas %}
+                    <p class="font-weight-bold">Basic example</p>
+                    <ul>
+                        <li>Marka: {{datas.name}}</li>
+                        <li>Model: {{datas.model}}</li>
+                        <li>Rok: produkcji {{datas.production_year}}</li>
+                        <li>Cena za dobe od {{datas.prices_low}}</li>
+                    </ul>
+                    <form action="{{url_for('get_reservation',car_id=datas.id)}}" method="GET">
+                        <input type="hidden" name="photo" value={{datas.photo}}>
+                        <td>
+                            <button type="submit">Zarezerwuj</button>
+                        </td>
+                    </form>
+                    {% else %}
+                    Some text
+                    {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-6">
-      <div class="card" style="width: 30rem;">
-  <img src="{{url_for('static',filename=current_picture)}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{% if datas %} {{datas.name}} {{datas.model}} {% else %} Car Rental {% endif %}</h5>
-    <p class="card-text">
-      {% if datas %}
-      <p class="font-weight-bold">Basic example</p>
-        <ul>
-            <li>Marka: {{datas.name}}</li>
-            <li>Model: {{datas.model}}</li>
-            <li>Rok: produkcji {{datas.production_year}}</li>
-        </ul>
-       <form action="{{url_for('get_reservation',car_id=datas.id)}}" method="GET" >
-                <input type="hidden" name="photo" value={{datas.photo}}>
-                <td><button type="submit">Zarezerwuj</button></td>
-      </form>
-      {% else %}
-        Some text
-      {% endif %}
-    </p>
-  </div>
-</div>
-    </div>
-  </div>
 </div>
 
 {% endblock %}

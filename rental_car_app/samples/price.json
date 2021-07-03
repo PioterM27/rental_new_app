@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "model_name":"Brava",
+    "high_price": 101,
+    "medium_price": 71,
+    "low_price": 51,
+    "car_id": 1
+
+  },
+  {
+    "id": 2,
+    "model_name":"M4",
+    "high_price": 102,
+    "medium_price": 72,
+    "low_price": 52,
+    "car_id": 2
+
+
+  },
+  {
+    "id": 3,
+    "model_name":"Auris",
+    "high_price": 103,
+    "medium_price": 73,
+    "low_price": 53,
+    "car_id": 3
+
+  },
+  {
+    "id": 4,
+    "model_name":"Panda",
+    "high_price": 104,
+    "medium_price": 74,
+    "low_price": 54,
+    "car_id": 4
+
+  },
+  {
+    "id": 5,
+    "model_name":"500",
+    "high_price": 105,
+    "medium_price": 75,
+    "low_price": 55,
+    "car_id": 5
+
+  },
+  {
+    "id": 6,
+    "model_name":"Fiesta",
+    "high_price": 106,
+    "medium_price": 76,
+    "low_price": 56,
+    "car_id": 6
+
+  },
+  {
+    "id": 6,
+    "model_name":"C3",
+    "high_price": 107,
+    "medium_price": 77,
+    "low_price": 57,
+    "car_id": 7
+
+  },
+  {
+    "id": 8,
+    "model_name":"Clio",
+    "high_price": 108,
+    "medium_price": 78,
+    "low_price": 58,
+    "car_id": 8
+
+  },
+  {
+    "id": 9,
+    "model_name":"Cactus",
+    "high_price": 109,
+    "medium_price": 79,
+    "low_price": 59,
+    "car_id": 9
+
+  },
+  {
+    "id": 10,
+    "model_name":"Megan",
+    "high_price": 110,
+    "medium_price": 80,
+    "low_price": 60,
+    "car_id": 10
+
+  },
+  {
+    "id": 11,
+    "model_name":"Yaris",
+    "high_price": 111,
+    "medium_price": 81,
+    "low_price": 61,
+    "car_id": 11
+
+  },
+  {
+    "id": 12,
+   "model_name":"308",
+    "high_price": 112,
+    "medium_price": 82,
+    "low_price": 62,
+    "car_id": 12
+
+  }
+
+]

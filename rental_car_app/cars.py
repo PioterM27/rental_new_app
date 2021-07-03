@@ -21,6 +21,7 @@ def main_page():
 def get_cars():
     cars = Cars.query
     forms2 = SearchDate()
+    data_list = []
     formList = []
     for car in cars:
         formList.append(car.to_json())
@@ -30,19 +31,19 @@ def get_cars():
             "get_cars_template.html", form1=forms2, current_picture="cars.jpg"
         )
     elif request.method == "POST":
-        if request.form.get("dateFrom") != None and request.form.get("dateTo") != None:
-            print(request.form.get("dateFrom"))
-            print(request.form.get("dateTo"))
+        if request.form.get("rent-from") != None and request.form.get("rent-to") != None:
+            data_list.append(request.form.get("rent-from"))
+            data_list.append(request.form.get("rent-to"))
             return render_template(
                 "get_cars_template.html",
                 form1=forms2,
                 form=formList,
+                calendar=data_list,
                 current_picture="cars.jpg",
             )
         elif request.form.get("name") != None:
             result = request
             requests = result.values
-            print(result)
             index = int(requests.get("id")) - 1
             return render_template(
                 "get_cars_template.html",
@@ -50,6 +51,7 @@ def get_cars():
                 form=formList,
                 current_picture=formList[index]["photo"],
                 datas=formList[index],
+                calendar=data_list
             )
 
 

@@ -21,4 +21,6 @@ from rental_car_app import cars
 from rental_car_app.models import Cars
 from rental_car_app.models import Customer
 from rental_car_app.models import Rent
+from rental_car_app.models import Price
+from rental_car_app.models import Season
 from rental_car_app.models import db_manage_command
