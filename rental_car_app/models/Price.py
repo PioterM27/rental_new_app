@@ -8,5 +8,4 @@ class Price(db.Model):
     high_price = db.Column(db.Integer, nullable=False)
     medium_price = db.Column(db.Integer, nullable=False)
     low_price = db.Column(db.Integer, nullable=False)
-    car_id = db.Column(db.Integer, db.ForeignKey('cars.id'), nullable=True)
-
+    car_id = db.Column(db.Integer, db.ForeignKey("cars.id"), nullable=True)

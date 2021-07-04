@@ -17,9 +17,7 @@ class Cars(db.Model):
     seats = db.Column(db.Integer, nullable=False)
     gearbox = db.Column(db.String(50), nullable=False)
     customer = db.relationship("Customer", back_populates="cars", secondary="rents")
-    prices = db.relationship('Price', uselist=False, backref="cars")
-
-
+    prices = db.relationship("Price", uselist=False, backref="cars")
 
     def to_json(self):
         author_to_json = {
@@ -30,10 +28,8 @@ class Cars(db.Model):
             "photo": self.photo,
             "seats": self.seats,
             "gearbox": self.gearbox,
-            "prices_low":self.prices.low_price,
+            "prices_low": self.prices.low_price,
             "prices_medium": self.prices.medium_price,
             "prices_high": self.prices.high_price,
-
-
         }
         return author_to_json

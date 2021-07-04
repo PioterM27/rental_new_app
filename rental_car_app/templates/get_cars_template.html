@@ -61,7 +61,7 @@ HI
                             <fieldset class="form-field">
                                 <label for="start">Start date:</label>
                                 <input type="date" id="start" name="rent-from"
-                                       value= {%if calendar %} {{calendar[0]}} {%else%} "2020-07-22" {%endif%}
+                                       value= {%if calendar %} {{calendar.get('rent-from')}} {%else%} "2020-07-22" {%endif%}
                                        min="2020-01-01" max="2022-12-31">
                             </fieldset>
                         </div>
@@ -69,7 +69,7 @@ HI
                             <fieldset class="form-field">
                                 <label for="start">Start date:</label>
                                 <input type="date" id="stop" name="rent-to"
-                                       value={%if calendar %} {{calendar[1]}} {%else%} "2020-07-22" {%endif%}
+                                       value={%if calendar %} {{calendar.get('rent-to')}} {%else%} "2020-07-22" {%endif%}
                                        min="2020-01-01" max="2022-12-31">
                             </fieldset>
                         </div>
@@ -82,13 +82,13 @@ HI
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         <label class="form-check-label" for="flexCheckDefault">
-                            Default checkbox
+                            All cars
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                         <label class="form-check-label" for="flexCheckChecked">
-                            Checked checkbox
+                            Available cars
                         </label>
                     </div>
                 </div>
