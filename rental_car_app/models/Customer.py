@@ -9,4 +9,5 @@ class Customer(db.Model):
     email = db.Column(db.String(255), nullable=False, unique=True)
     city = db.Column(db.String(255), nullable=False, index=True)
     state = db.Column(db.String(255), nullable=False, index=True)
+    car_id = db.Column(db.Integer,nullable=False)
     cars = db.relationship("Cars", back_populates="customer", secondary="rents")

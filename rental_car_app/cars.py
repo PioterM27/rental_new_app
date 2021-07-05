@@ -86,14 +86,27 @@ def get_reservation(car_id=None):
         customer.email = request.form.get("email")
         customer.city = request.form.get("city")
         customer.state = "Poland"
+        customer.car_id = car_id
         db.session.add(customer)
         db.session.commit()
-        return redirect(url_for("succes_forms"))
+        rent_car(car_id)
+        return redirect(url_for("success_forms"))
 
     return render_template(
         "reservation.html", form=form, current_picture=test.get("photo")
     )
 
+
+def rent_car(car_id):
+    customer = Customer.query.filter(Customer.car_id == car_id).one()
+    rent=Rent()
+    rent.car_id = car_id
+    rent.customer_id = customer.id
+    rent.price = session["price"]
+    rent.return_date = session["rent-to"]
+    rent.pickUp_date = session["rent-from"]
+    db.session.add(rent)
+    db.session.commit()
 
 @app.route("/success/", methods=["POST"])
 def success_forms():
