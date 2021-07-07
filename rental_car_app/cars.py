@@ -99,7 +99,7 @@ def get_reservation(car_id=None):
 
 def rent_car(car_id):
     customer = Customer.query.filter(Customer.car_id == car_id).one()
-    rent=Rent()
+    rent = Rent()
     rent.car_id = car_id
     rent.customer_id = customer.id
     rent.price = session["price"]
@@ -107,6 +107,7 @@ def rent_car(car_id):
     rent.pickUp_date = session["rent-from"]
     db.session.add(rent)
     db.session.commit()
+
 
 @app.route("/success/", methods=["POST"])
 def success_forms():

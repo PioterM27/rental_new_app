@@ -18,6 +18,8 @@ migrate = Migrate(app, db)
 
 
 from rental_car_app import cars
+from rental_car_app import login
+from rental_car_app import admin
 from rental_car_app.models import Cars
 from rental_car_app.models import Customer
 from rental_car_app.models import Rent

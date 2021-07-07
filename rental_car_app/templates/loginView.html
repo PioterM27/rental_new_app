@@ -1,0 +1,109 @@
+{%extends "base.html"%}
+
+{% block title %}
+HI
+{% endblock %}
+
+{% block navbar%}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li>
+            </ul>
+            {%if login_form%}
+            <form class="d-flex" action="{{url_for('register')}}" method="GET">
+                <button class="btn btn-outline-success" type="submit">Register</button>
+            </form>
+            {%endif%}
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Column
+        </div>
+        <div class="col">
+            {% if login_form %}
+            <form action="{{url_for('login')}}" method="POST">
+                <div class="mb-3">
+                    <div class="col-md-6">
+                        {{ wtf.form_field(login_form.email, class='form-control',
+                        placeholder='Email') }}
+                    </div>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    {{ wtf.form_field(login_form.password, class='form-control',
+                        placeholder='Password') }}
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {% else %}
+            <form action="{{url_for('register')}}" method="POST">
+                <div class="mb-3">
+                    <div class="col-md-6">
+                        {{ wtf.form_field(register_form.first_name, class='form-control',
+                        placeholder='First name') }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    {{ wtf.form_field(register_form.last_name, class='form-control',
+                        placeholder='Last name') }}
+                </div>
+                <div class="mb-3">
+                    {{ wtf.form_field(register_form.email, class='form-control',
+                        placeholder='Email') }}
+                </div>
+                <div class="mb-3">
+                    {{ wtf.form_field(register_form.password, class='form-control',
+                        placeholder='Password') }}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            {%endif%}
+
+        </div>
+        <div class="col">
+            Column
+        </div>
+    </div>
+</div>
+{% endblock %}
