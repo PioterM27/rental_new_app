@@ -1,6 +1,5 @@
 from flask import jsonify, render_template, request, url_for, redirect, session
-import json
-from flask_wtf import FlaskForm
+from flask_login import login_required,login_user,logout_user,current_user
 
 from rental_car_app import app
 from rental_car_app.models.Cars import Cars
@@ -9,6 +8,8 @@ from rental_car_app.models.Price import Price
 from rental_car_app.models.Customer import Customer
 from rental_car_app.Control.PriceCounter import PriceCounter
 from rental_car_app import db
+from rental_car_app import utils
+from flask_login import LoginManager
 
 from rental_car_app.Forms.SearchDate import SearchDate
 from rental_car_app.Forms.CustomerData import CustomerData
@@ -23,8 +24,6 @@ def main_page():
 def get_cars():
     cars = Cars.query
     forms2 = SearchDate()
-    data_list = []
-    # session['data']
     formList = []
     for car in cars:
         formList.append(car.to_json())

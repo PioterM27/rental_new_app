@@ -17,6 +17,7 @@ from rental_car_app.Forms.RegistrationForm import RegistrationForm
 
 
 @app.route("/admin", methods=["GET", "POST"])
+@login_required
 def admin_panel():
     cars = Cars.query
     formList = []
