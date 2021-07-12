@@ -1,5 +1,5 @@
 from flask import jsonify, render_template, request, url_for, redirect, session
-from flask_login import login_required,login_user,logout_user,current_user
+from flask_login import login_required, login_user, logout_user, current_user
 
 from rental_car_app import app
 from rental_car_app.models.Cars import Cars
@@ -7,6 +7,7 @@ from rental_car_app.models.Rent import Rent
 from rental_car_app.models.Price import Price
 from rental_car_app.models.Customer import Customer
 from rental_car_app.Control.PriceCounter import PriceCounter
+from rental_car_app.Control.DataComparator import DataComparator
 from rental_car_app import db
 from rental_car_app import utils
 from flask_login import LoginManager
@@ -22,41 +23,58 @@ def main_page():
 
 @app.route("/", methods=["GET", "POST"])
 def get_cars():
-    cars = Cars.query
+    # cars = Cars.query
+    rents = Rent.query
     forms2 = SearchDate()
-    formList = []
-    for car in cars:
-        formList.append(car.to_json())
+    rent_list = []
+    for rent in rents:
+        rent_list.append(rent.to_json())
 
     if request.method == "GET":
         return render_template(
             "get_cars_template.html", form1=forms2, current_picture="cars.jpg"
         )
     elif request.method == "POST":
+        cars = Cars.query
+        form_list = []
         if (
             request.form.get("rent-from") != None
             and request.form.get("rent-to") != None
         ):
             session["rent-from"] = request.form.get("rent-from")
             session["rent-to"] = request.form.get("rent-to")
-            # data_list.append(request.form.get("rent-to"))
+            data_comparator = DataComparator(
+                session["rent-from"], session["rent-to"], rent_list
+            )
+            reserved_cars = data_comparator.check_car_avability()
+            for car in cars:
+                if car.to_json()["id"] in reserved_cars:
+                    continue
+                else:
+                    form_list.append(car.to_json())
+            session["form_list"] = form_list
+            print(session["form_list"])
+
             return render_template(
                 "get_cars_template.html",
                 form1=forms2,
-                form=formList,
+                form=form_list,
                 calendar=session,
                 current_picture="cars.jpg",
             )
         elif request.form.get("name") != None:
             result = request
             requests = result.values
-            index = int(requests.get("id")) - 1
+            _index = int(requests.get("id"))
+            true_index = (
+                list(map(lambda x: x["id"] == _index, session["form_list"]))
+            ).index(True)
             return render_template(
                 "get_cars_template.html",
                 form1=forms2,
-                form=formList,
-                current_picture=formList[index]["photo"],
-                datas=formList[index],
+                form=form_list,
+                current_picture=session["form_list"][true_index]["photo"],
+                datas=session["form_list"][true_index],
                 calendar=session,
             )
 
@@ -70,6 +88,7 @@ def get_reservation(car_id=None):
     price = PriceCounter(
         session.get("rent-from"), session.get("rent-to"), car_price.medium_price
     )
+    price.exchange_value("PLN")
     session["price"] = price.count_price()
     if request.method == "GET":
         return render_template(
@@ -106,6 +125,10 @@ def rent_car(car_id):
     rent.pickUp_date = session["rent-from"]
     db.session.add(rent)
     db.session.commit()
+
+
+def set_currency(currency):
+    session["currency"] = currency
 
 
 @app.route("/success/", methods=["POST"])

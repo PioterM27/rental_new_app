@@ -13,7 +13,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
-
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 

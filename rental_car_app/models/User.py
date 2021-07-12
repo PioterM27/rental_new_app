@@ -25,9 +25,12 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password, password)
 
     def generate_jwt(self) -> bytes:
-        payload = {'user_id': self.id, 'exp': datetime.utcnow() + timedelta(
-            minutes=current_app.config.get('JWT_EXPIRED_MINUTES', 30))}
-        return jwt.encode(payload, current_app.config.get('SECRET_KEY'))
+        payload = {
+            "user_id": self.id,
+            "exp": datetime.utcnow()
+            + timedelta(minutes=current_app.config.get("JWT_EXPIRED_MINUTES", 30)),
+        }
+        return jwt.encode(payload, current_app.config.get("SECRET_KEY"))
 
     def is_authenticated(self):
         return True
@@ -40,4 +43,3 @@ class User(UserMixin, db.Model):
 
     def get_id(self):
         return str(self.id)
-

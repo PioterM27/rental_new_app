@@ -8,3 +8,13 @@ class Rent(db.Model):
     price = db.Column(db.Integer, nullable=False)
     pickUp_date = db.Column(db.DateTime, nullable=False)
     return_date = db.Column(db.DateTime, nullable=False)
+
+    def to_json(self):
+        rents_to_json = {
+            "car_id": self.car_id,
+            "customer_id": self.customer_id,
+            "price": self.price,
+            "pickUp_date": self.pickUp_date.date(),
+            "return_date": self.return_date.date(),
+        }
+        return rents_to_json

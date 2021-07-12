@@ -85,7 +85,7 @@ HI
                 </ul>
             </div>
 
-            <div class="row flex-lg-nowrap" id="ex1-tabs-2" role="presentation" >
+            <div class="row flex-lg-nowrap" id="ex1-tabs-2" role="tabpanel" >
                 <div class="col mb-3">
                     <div class="e-panel card">
                         <div class="card-body">
@@ -244,15 +244,16 @@ HI
                                                     <label class="custom-control-label" for="all-items"></label>
                                                 </div>
                                             </th>
-                                            <th>Photo</th>
-                                            <th class="max-width">Name</th>
-                                            <th class="sortable">Date</th>
-                                            <th></th>
+                                            <th>Car Id</th>
+                                            <th class="max-width">Customer Id</th>
+                                            <th class="sortable">Price</th>
+                                            <th class="sortable">Pick Up Date</th>
+                                            <th class="sortable">Return Date</th>
                                             <th>Actions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        {%for car in car_form%}
+                                        {%for rent in rents_form%}
                                         <tr>
                                             <td class="align-middle">
                                                 <div class="custom-control custom-control-inline custom-checkbox custom-control-nameless m-0 align-top">
@@ -260,17 +261,11 @@ HI
                                                     <label class="custom-control-label" for={{loop.index}}></label>
                                                 </div>
                                             </td>
-                                            <td class="align-middle text-center">
-                                                <div class="bg-light d-inline-flex justify-content-center align-items-center align-top"
-                                                     style="width: 35px; height: 35px; border-radius: 3px;">
-                                                  <img src="{{url_for('static',filename=car.photo)}}" class="card-img-top" alt="...">
-                                            </td>
-                                            <td class="text-nowrap align-middle">{{car.name + " " + car.model}}</td>
-                                            <td class="text-nowrap align-middle"><span>09 Dec 2017</span></td>
-                                            <td class="text-center align-middle"><i
-                                                    class="fa fa-fw text-secondary cursor-pointer fa-toggle-on">
-                                            </i>
-                                            </td>
+                                            <td class="text-nowrap align-middle">{{rent.car_id}}</td>
+                                            <td class="text-nowrap align-middle">{{rent.customer_id}}</td>
+                                            <td class="text-nowrap align-middle">{{rent.price}}</td>
+                                            <td class="text-nowrap align-middle"><span>{{rent.pickUp_date}}</span></td>
+                                            <td class="text-nowrap align-middle"><span>{{rent.return_date}}</span></td>
                                             <td class="text-center align-middle">
                                                 <div class="btn-group align-top">
                                                     <button class="btn btn-sm btn-outline-secondary badge" type="button"
